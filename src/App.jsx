@@ -2,8 +2,21 @@
 import { Routes, Route, Link } from "react-router-dom";
 import ChecklistPage from "./pages/ChecklistPage";
 import AddItemPage from "./pages/AddItemPage";
-
+import { useState, useEffect } from "react";
+import SplashScreen from "./components/SplashScreen";
 function App() {
+
+   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <SplashScreen />;
 
   return (
    <div className="min-h-screen bg-black text-white">
